@@ -1,6 +1,6 @@
 import apiClient from "./apiClient";
-import type { AuthResponse } from "@/types";
-import type { LoginCredentials } from "@/schemas";
+import type { AuthResponse } from "../types";
+import type { LoginCredentials } from "../schemas";
 
 export const login = async (
   credentials: LoginCredentials
@@ -9,5 +9,6 @@ export const login = async (
     "/auth/login",
     credentials
   );
+
   return response.data;
 };

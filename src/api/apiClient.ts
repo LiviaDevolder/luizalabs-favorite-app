@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useAuthStore } from "@/stores";
+import { useAuthStore } from "../stores";
 
 const apiClient = axios.create({
   baseURL: process.env.BACKEND_URL,

@@ -3,7 +3,7 @@ import type {
   FavoriteList,
   EnrichedFavoriteList,
   FavoriteListItem,
-} from "@/types";
+} from "../types";
 
 export const createFavoriteList = async (data: {
   title: string;
