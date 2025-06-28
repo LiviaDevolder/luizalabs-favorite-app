@@ -1,5 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import type { Preview } from "@storybook/react-webpack5";
+import type { Preview } from "@storybook/react-vite";
 import { theme } from "../src/styles/theme";
 
 const preview: Preview = {
