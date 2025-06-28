@@ -4,11 +4,15 @@ import { getProducts } from "../../api/productService";
 import type { Product } from "../..//types";
 import { ProductCard, ProductCardSkeleton } from "../molecules/ProductCard";
 import { toaster } from "../ui/toaster";
+import { useFavoritesStore } from "../../stores/favoritesStore";
 
 export const ProductGrid = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const { addProduct, removeProduct, isProductInFavorites } =
+    useFavoritesStore();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,15 +32,32 @@ export const ProductGrid = () => {
     fetchProducts();
   }, []);
 
-  const handleFavorite = (productId: string | number) => {
-    console.log(`Produto ${productId} favoritado!`);
-    toaster.create({
-      title: "Produto favoritado!",
-      description: "Você pode vê-lo na sua lista de favoritos.",
-      type: "success",
-      duration: 3000,
-      closable: true,
-    });
+  const handleFavorite = async (product: Product) => {
+    const isFavorite = isProductInFavorites(product.id);
+
+    try {
+      isFavorite ? await removeProduct(product.id) : await addProduct(product);
+
+      toaster.create({
+        title: isFavorite
+          ? "Produto removido dos favoritos"
+          : "Produto favoritado!",
+        description: "Você pode conferir sua lista de favoritos.",
+        type: "success",
+        duration: 3000,
+        closable: true,
+      });
+    } catch (error) {
+      toaster.create({
+        title: isFavorite
+          ? "Falha ao remover dos favoritos"
+          : "Falha ao favoritar produto",
+        description: "Tente novamente mais tarde",
+        type: "error",
+        duration: 3000,
+        closable: true,
+      });
+    }
   };
 
   if (error) {
@@ -58,7 +79,7 @@ export const ProductGrid = () => {
               key={product.id}
               product={product}
               onFavorite={handleFavorite}
-              isFavorited={false}
+              isFavorited={isProductInFavorites(product.id)}
             />
           ))}
     </SimpleGrid>

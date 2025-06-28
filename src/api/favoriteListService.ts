@@ -14,7 +14,7 @@ export const createFavoriteList = async (data: {
 };
 
 export const getFavoriteList = async (): Promise<EnrichedFavoriteList> => {
-  const response = await apiClient.get<EnrichedFavoriteList>("/favorite-list");
+  const response = await apiClient.get<EnrichedFavoriteList>(`/favorite-list`);
   return response.data;
 };
 
@@ -31,7 +31,7 @@ export const deleteFavoriteList = async (): Promise<void> => {
 };
 
 export const addProductToFavoriteList = async (
-  productId: string | number
+  productId: string
 ): Promise<FavoriteListItem> => {
   const response = await apiClient.post<FavoriteListItem>(
     "/favorite-list/products",
@@ -41,7 +41,7 @@ export const addProductToFavoriteList = async (
 };
 
 export const removeProductFromFavoriteList = async (
-  productId: string | number
+  productId: string
 ): Promise<void> => {
   await apiClient.delete(`/favorite-list/products/${productId}`);
 };

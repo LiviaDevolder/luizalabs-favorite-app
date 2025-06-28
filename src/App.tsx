@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LoginPage } from "./pages/LoginPage";
-import { HomePage } from "./pages/HomePage";
+import { LoginPage } from "./components/pages/LoginPage";
+import { HomePage } from "./components/pages/HomePage";
+import { FavoritesPage } from "./components/pages/FavoritesPage";
+import { ProtectedRoute } from "./router/ProtectedRoute";
 
 export function App() {
   return (
@@ -8,6 +10,9 @@ export function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<HomePage />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/favorites" element={<FavoritesPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

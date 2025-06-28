@@ -15,7 +15,7 @@ import { useColorModeValue } from "../ui/color-mode";
 
 interface ProductCardProps {
   product: Product;
-  onFavorite: (productId: string) => void;
+  onFavorite: (productId: Product) => void;
   isFavorited: boolean;
 }
 
@@ -41,7 +41,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <Button
         variant="solid"
         colorScheme={isFavorited ? "red" : "blue"}
-        onClick={() => onFavorite(product.id)}
+        onClick={() => onFavorite(product)}
       >
         {isFavorited ? "Remover dos Favoritos" : "Adicionar aos Favoritos"}
       </Button>
