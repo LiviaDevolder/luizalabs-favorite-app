@@ -1,10 +1,10 @@
-import { Button, Stack } from "@chakra-ui/react";
+import { Box, Button, Stack, Text } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { TextField } from "../molecules/TextField";
 import { useAuthStore } from "../../stores/authStore";
 import { login as loginService } from "../../api/authService";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import type { User } from "../../types";
 
@@ -48,17 +48,26 @@ export const LoginForm = () => {
               name="email"
               label="Endereço de e-mail"
               type="email"
+              placeholder="email@exemplo.com"
               required={true}
             />
             <TextField
               name="password"
               label="Senha"
               type="password"
+              placeholder="Digite sua senha"
               required={true}
             />
-            <Button type="submit" colorScheme="primary" loading={isSubmitting}>
+            <Button type="submit" bgColor="primary" loading={isSubmitting}>
               Entrar
             </Button>
+            <Box textAlign="center">
+              <Link to={"/register"}>
+                <Text color="primary">
+                  Ainda não tem uma conta? Faça o cadastro
+                </Text>
+              </Link>
+            </Box>
           </Stack>
         </Form>
       )}

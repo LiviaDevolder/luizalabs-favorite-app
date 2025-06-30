@@ -1,9 +1,9 @@
-import { AuthTemplate } from '../templates/AuthTemplate';
-import { RegistrationForm } from '../organisms/RegistrationForm';
+import { AuthTemplate } from "../templates/AuthTemplate";
+import { RegistrationForm } from "../organisms/RegistrationForm";
 
 export const RegistrationPage = () => {
   return (
-    <AuthTemplate title="Crie sua conta gratuitamente">
+    <AuthTemplate title="Quero criar uma conta">
       <RegistrationForm />
     </AuthTemplate>
   );

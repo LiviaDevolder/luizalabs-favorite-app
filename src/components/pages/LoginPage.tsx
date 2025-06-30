@@ -3,7 +3,7 @@ import { AuthTemplate } from "../templates/AuthTemplate";
 
 export const LoginPage = () => {
   return (
-    <AuthTemplate title="Bem-vindo de volta!">
+    <AuthTemplate title="Já sou cliente">
       <LoginForm />
     </AuthTemplate>
   );

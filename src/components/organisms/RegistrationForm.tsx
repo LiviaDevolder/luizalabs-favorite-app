@@ -75,10 +75,11 @@ export const RegistrationForm = () => {
             label="Confirme sua senha"
             type="password"
             required
+            placeholder="Digite sua senha"
           />
           <Button
             type="submit"
-            colorScheme="teal"
+            bgColor="primary"
             loading={isSubmitting}
             loadingText="Criando conta..."
             size="lg"
@@ -87,12 +88,9 @@ export const RegistrationForm = () => {
             Criar minha conta
           </Button>
           <Box textAlign="center">
-            <Text>
-              Já tem uma conta?{" "}
-              <Link color="teal" to={"/login"}>
-                Faça o login
-              </Link>
-            </Text>
+            <Link to={"/login"}>
+              <Text color="primary">Já tem uma conta? Faça o login</Text>
+            </Link>
           </Box>
         </Stack>
       )}

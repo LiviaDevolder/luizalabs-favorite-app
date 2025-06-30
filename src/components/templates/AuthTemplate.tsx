@@ -22,12 +22,12 @@ export const AuthTemplate = ({ children, title }: AuthTemplateProps) => {
         bg={boxBgColor}
         w="100%"
       >
-        <Box textAlign="center" mb={6}>
-          <Heading as="h1" size="lg" color="teal.500">
+        <Box mb={6}>
+          <Heading as="h1" size="lg" color="primary">
             {title}
           </Heading>
         </Box>
-        
+
         {children}
       </Box>
     </Flex>
