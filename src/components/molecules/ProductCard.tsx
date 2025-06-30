@@ -1,7 +1,6 @@
 import {
   Image,
   Stack,
-  Heading,
   Text,
   Button,
   CardBody,
@@ -9,9 +8,12 @@ import {
   Box,
   Skeleton,
   SkeletonText,
+  RatingGroup,
+  Flex,
 } from "@chakra-ui/react";
 import type { Product } from "../../types";
 import { useColorModeValue } from "../ui/color-mode";
+import { roundToNearestHalf } from "../../util/roundToNearestHalf";
 
 interface ProductCardProps {
   product: Product;
@@ -27,10 +29,47 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <CardRoot>
       <CardBody>
-        <Image src={product.image} alt={product.title} borderRadius="lg" />
-        <Stack mt="6" gap="3">
-          <Heading size="md">{product.title}</Heading>
-          <Text color="blue.600" fontSize="2xl">
+        <Image
+          maxW={"290px"}
+          maxH={"210px"}
+          w={"100%"}
+          h={"100%"}
+          objectFit={"contain"}
+          src={product.image}
+          alt={product.title}
+          borderRadius="lg"
+        />
+        <Stack mt="6" gap="1">
+          <Text
+            fontSize="sm"
+            lineHeight={"1.25"}
+            fontWeight={"400"}
+            textOverflow={"ellipsis"}
+            lineClamp={"3"}
+          >
+            {product.title}
+          </Text>
+
+          {product.rating ? (
+            <Flex gap={1} alignItems={"center"}>
+              <RatingGroup.Root
+                allowHalf
+                readOnly
+                count={5}
+                defaultValue={roundToNearestHalf(product.rating.rate)}
+                size={"xs"}
+                colorPalette={"yellow"}
+              >
+                <RatingGroup.HiddenInput />
+                <RatingGroup.Control />
+              </RatingGroup.Root>
+              <Text color={"gray.500"} fontSize={"sm"}>
+                {product.rating.rate} ({product.rating.count})
+              </Text>
+            </Flex>
+          ) : null}
+
+          <Text color="gray.700" fontSize="2xl" fontWeight={"700"}>
             {new Intl.NumberFormat("pt-BR", {
               style: "currency",
               currency: "BRL",
@@ -40,10 +79,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </CardBody>
       <Button
         variant="solid"
-        colorScheme={isFavorited ? "red" : "blue"}
+        bgColor={isFavorited ? "red" : "primary"}
         onClick={() => onFavorite(product)}
+        textTransform={"uppercase"}
+        fontWeight={"700"}
       >
-        {isFavorited ? "Remover dos Favoritos" : "Adicionar aos Favoritos"}
+        {isFavorited ? "Remover" : "Adicionar"}
       </Button>
     </CardRoot>
   );

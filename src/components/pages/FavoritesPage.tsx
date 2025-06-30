@@ -55,7 +55,13 @@ export const FavoritesPage = () => {
 
   return (
     <MainLayout>
-      <Box p={{ base: 2, md: 4 }}>{renderContent()}</Box>
+      <Box
+        bgColor={"white"}
+        p={"24px 16px"}
+        borderRadius={"8px"}
+      >
+        {renderContent()}
+      </Box>
     </MainLayout>
   );
 };

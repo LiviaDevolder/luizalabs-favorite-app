@@ -16,8 +16,8 @@ export const HomePage = () => {
 
   return (
     <MainLayout>
-      <Box>
-        <Heading as="h2" size="xl" mb={6} textAlign="center">
+      <Box bgColor={"white"} p={"24px 16px"} borderRadius={"8px"}>
+        <Heading as="h2" size="xl" mb={6}>
           Catálogo de Produtos
         </Heading>
         <ProductGrid />

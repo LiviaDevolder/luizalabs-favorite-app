@@ -9,10 +9,10 @@ import {
   Alert,
 } from "@chakra-ui/react";
 import { useFavoritesStore } from "../../stores/favoritesStore";
-import type { EnrichedFavoriteList } from "../../types";
-import { FavoriteProductCard } from "../molecules/FavoriteProductCard";
-import { ProductCardSkeleton } from "../molecules/ProductCard";
+import type { EnrichedFavoriteList, Product } from "../../types";
+import { ProductCard, ProductCardSkeleton } from "../molecules/ProductCard";
 import { toaster } from "../ui/toaster";
+import { UpdateFavoriteListForm } from "./UpdateFavoriteListDialog";
 
 interface ExistingFavoritesProps {
   list: EnrichedFavoriteList;
@@ -21,8 +21,8 @@ interface ExistingFavoritesProps {
 export const ExistingFavorites = ({ list }: ExistingFavoritesProps) => {
   const { removeProduct, deleteList, isLoading } = useFavoritesStore();
 
-  const handleRemove = async (productId: string) => {
-    await removeProduct(productId);
+  const handleRemove = async (product: Product) => {
+    await removeProduct(product.id);
     toaster.create({
       title: "Produto removido.",
       type: "info",
@@ -65,17 +65,17 @@ export const ExistingFavorites = ({ list }: ExistingFavoritesProps) => {
           )}
         </Box>
         <Spacer />
-        <Box mt={{ base: 4, md: 0 }}>
+        <Flex gap={"12px"} mt={{ base: 4, md: 0 }}>
+          <UpdateFavoriteListForm />
           <Button
-            colorScheme="red"
+            color="red"
             variant="outline"
             onClick={handleDeleteList}
             loading={isLoading}
           >
             Apagar Lista
           </Button>
-          {/* Botão para editar pode ser adicionado aqui depois */}
-        </Box>
+        </Flex>
       </Flex>
 
       {list.items.length === 0 ? (
@@ -93,10 +93,11 @@ export const ExistingFavorites = ({ list }: ExistingFavoritesProps) => {
                 <ProductCardSkeleton key={index} />
               ))
             : list.items.map((product) => (
-                <FavoriteProductCard
+                <ProductCard
                   key={product.id}
                   product={product}
-                  onRemove={handleRemove}
+                  onFavorite={handleRemove}
+                  isFavorited={true}
                 />
               ))}
         </SimpleGrid>
