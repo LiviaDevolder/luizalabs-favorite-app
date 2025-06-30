@@ -1,16 +1,18 @@
 import { createSystem, defaultConfig } from "@chakra-ui/react";
+import slotRecipes from "./slotRecipes";
 
 export const theme = createSystem(defaultConfig, {
   theme: {
     tokens: {
       colors: {
-        primary: { value: "#00A8E8" },
-        secondary: { value: "#007EA7" },
+        primary: { value: "#0086FF" },
+        secondary: { value: "#FCD002" },
       },
       fonts: {
-        heading: { value: "Inter, sans-serif" },
-        body: { value: "Inter, sans-serif" },
+        heading: { value: "Roboto, sans-serif" },
+        body: { value: "Roboto, sans-serif" },
       },
     },
+    slotRecipes,
   },
 });

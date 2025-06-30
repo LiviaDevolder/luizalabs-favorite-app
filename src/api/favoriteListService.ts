@@ -3,6 +3,7 @@ import type {
   FavoriteList,
   EnrichedFavoriteList,
   FavoriteListItem,
+  Product,
 } from "../types";
 
 export const createFavoriteList = async (data: {
@@ -44,4 +45,13 @@ export const removeProductFromFavoriteList = async (
   productId: string
 ): Promise<void> => {
   await apiClient.delete(`/favorite-list/products/${productId}`);
+};
+
+export const searchProductsByName = async (
+  title: string
+): Promise<Product[]> => {
+  const response = await apiClient.get(
+    `/favorite-list/products/search?name=${title}`
+  );
+  return response.data;
 };
