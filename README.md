@@ -1,46 +1,86 @@
-# Getting Started with Create React App
+# Aplicação Frontend - Desafio LuizaLabs
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esta é a implementação do frontend para o Desafio Técnico Full Stack do LuizaLabs. O projeto consiste em uma interface de usuário reativa e moderna para consumir a API de Produtos Favoritos, permitindo que os clientes gerenciem suas listas de forma intuitiva.
 
-## Available Scripts
+## 📝 Sobre o Projeto
 
-In the project directory, you can run:
+O projeto é APP construído com **React.js** e **TypeScript**, focado em oferecer uma experiência de usuário fluida e responsiva. A aplicação permite que os usuários se cadastrem, façam login e gerenciem completamente suas listas de produtos favoritos, desde a criação da lista até a adição e remoção de produtos.
 
-### `npm start`
+## 🚀 Tecnologias e Arquitetura
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Este projeto foi construído utilizando um ecossistema de ferramentas modernas do universo React:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Core:** React.js, TypeScript, Bun
+- **UI e Estilização:** Chakra UI v3, React Icons
+- **Gerenciamento de Estado:** Zustand
+- **Formulários:** Formik e Yup
+- **Desenvolvimento de Componentes:** Design Atômico
+- **Cliente HTTP:** Axios
 
-### `npm test`
+### ✨ Decisões de Arquitetura
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1.  **Design Atômico:** A estrutura de componentes segue a metodologia do Design Atômico (Átomos, Moléculas, Organismos, etc.) para promover a reutilização, facilitar os testes e garantir a consistência visual.
 
-### `npm run build`
+2.  **Estado Global com Zustand:** O Zustand foi escolhido por sua simplicidade e performance para gerenciar o estado global da aplicação, como a sessão do usuário e a lista de favoritos.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3.  **Fluxo de Dados "Pessimista":** Para garantir que a UI esteja sempre sincronizada com o banco de dados, o estado local só é atualizado após a confirmação de sucesso da API, eliminando inconsistências.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Instalação e Execução
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Siga os passos abaixo para configurar e executar o ambiente de desenvolvimento localmente.
 
-### `npm run eject`
+### Pré-requisitos
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Antes de começar, você precisará ter a seguinte ferramenta instalada na sua máquina:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [Bun](https://bun.sh/) (v1.1.0 ou superior)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> **Importante:** A API de backend deve estar em execução para que o frontend possa se comunicar com ela.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Passo a Passo
 
-## Learn More
+1.  **Clone o repositório:**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    ```bash
+    git clone <url-do-seu-repositorio-frontend>
+    cd <nome-da-pasta-do-projeto>
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2.  **Crie o arquivo de ambiente:**
+    Copie o arquivo de exemplo `.env.example` para um novo arquivo chamado `.env`.
+
+    ```bash
+    cp .env.example .env
+    ```
+
+    O arquivo `.env` deve conter a URL base da sua API de backend. O prefixo `VITE_` é **obrigatório** para que o Vite exponha a variável ao frontend.
+
+    **`.env`**
+
+    ```
+    VITE_BACKEND_URL=http://localhost:3000
+    ```
+
+3.  **Instale as dependências:**
+
+    ```bash
+    bun install
+    ```
+
+4.  **Inicie a Aplicação em Modo de Desenvolvimento:**
+    Este comando iniciará o servidor com Hot Reload.
+    ```bash
+    bun run dev
+    ```
+    A aplicação estará disponível em `http://localhost:5173`.
+
+## 🧪 Testes
+
+A aplicação pode ser testada utilizando o executor de testes nativo do Bun.
+
+- Para rodar os testes, execute:
+
+  ```bash
+  bun test
+
+  ```
